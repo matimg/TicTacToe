@@ -15,9 +15,10 @@ const Menu = () => {
 					color: "#edd97d",
 					backgroundColor: "#3e3732",
 					width: "70px",
-					height: "70px"
+					height: "70px",
+					fontSize: "30px"
 				}}>
-				<p className="p-2 display-4">X</p>
+				X
 			</button>
 			<button
 				className="btn ml-2 mt-2"
@@ -25,7 +26,8 @@ const Menu = () => {
 					color: "#3facd6",
 					backgroundColor: "#3e3732",
 					width: "70px",
-					height: "70px"
+					height: "70px",
+					fontSize: "30px"
 				}}>
 				O
 			</button>
