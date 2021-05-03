@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import Celda from "./Celda.js";
 
 const Tablero = () => {
-	let juego = ["", "", ""];
-	let [turno, setTurno] = useState("X");
-	let [valor, setValor] = useState("");
-	const marcar = () => {
-		if (valor == "") {
-			setValor(turno);
-			setTurno("O");
-		}
+	const [celdas, setCeldas] = useState(["", "", "", "", "", "", "", "", ""]);
+	const [turno, setTurno] = useState(true);
+	const status = "Next player: " + (turno ? "X" : "O");
+
+	let marcar = celda => {
+		const nuevasCeldas = celdas.slice();
+		nuevasCeldas[celda] = turno ? "X" : "O";
+		setCeldas(nuevasCeldas);
+		setTurno(!turno);
 	};
 	return (
 		<div className="text-center mt-5">
@@ -19,27 +20,53 @@ const Tablero = () => {
 				<div className="row">
 					<Celda
 						clase="border-right border-bottom border-secondary"
-						id="1"
-						value={valor}
-						click={marcar}
+						value={celdas[0]}
+						onClick={() => marcar(0)}
 					/>
 					<Celda
 						clase="border-right border-bottom border-secondary"
-						id="2"
-						value={valor}
-						click={marcar}
+						value={celdas[1]}
+						onClick={() => marcar(1)}
 					/>
-					<Celda clase="border-bottom border-secondary" id="3" />
+					<Celda
+						clase="border-bottom border-secondary"
+						value={celdas[2]}
+						onClick={() => marcar(2)}
+					/>
 				</div>
 				<div className="row">
-					<Celda clase="border-right border-bottom border-secondary" />
-					<Celda clase="border-right border-bottom border-secondary" />
-					<Celda clase="border-bottom border-secondary" />
+					<Celda
+						clase="border-right border-bottom border-secondary"
+						value={celdas[3]}
+						onClick={() => marcar(3)}
+					/>
+					<Celda
+						clase="border-right border-bottom border-secondary"
+						value={celdas[4]}
+						onClick={() => marcar(4)}
+					/>
+					<Celda
+						clase="border-bottom border-secondary"
+						value={celdas[5]}
+						onClick={() => marcar(5)}
+					/>
 				</div>
 				<div className="row">
-					<Celda clase="border-right border-secondary" />
-					<Celda clase="border-right border-secondary" />
-					<Celda clase="" />
+					<Celda
+						clase="border-right border-secondary"
+						value={celdas[6]}
+						onClick={() => marcar(6)}
+					/>
+					<Celda
+						clase="border-right border-secondary"
+						value={celdas[7]}
+						onClick={() => marcar(7)}
+					/>
+					<Celda
+						clase=""
+						value={celdas[8]}
+						onClick={() => marcar(8)}
+					/>
 				</div>
 			</div>
 		</div>
