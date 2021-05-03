@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Tablero from "./Tablero.js";
-import Menu from "./Menu.js";
 
 //create your first component
 export function Home() {
