@@ -1,9 +1,10 @@
 import React, { useState, Fragment } from "react";
 import Celda from "./Celda.js";
+import PropTypes from "prop-types";
 
-const Tablero = () => {
+const Tablero = props => {
 	const [celdas, setCeldas] = useState(["", "", "", "", "", "", "", "", ""]);
-	const [turno, setTurno] = useState(true);
+	const [turno, setTurno] = useState(props.turnoInicial);
 
 	let verificarGanador = tablero => {
 		const combinaciones = [
@@ -41,7 +42,7 @@ const Tablero = () => {
 
 	const limpiar = () => {
 		setCeldas(["", "", "", "", "", "", "", "", ""]);
-		setTurno(true);
+		setTurno(props.turnoInicial);
 	};
 
 	const Estado = () => {
@@ -61,7 +62,7 @@ const Tablero = () => {
 	};
 
 	return (
-		<div className="text-center mt-5">
+		<div className="text-center mt-5" style={{ display: props.clase }}>
 			<h1 className="text-white">Tic Tac Toe in React.js</h1>
 			<Estado />
 			<button onClick={() => limpiar()}>Start Over</button>
@@ -123,3 +124,8 @@ const Tablero = () => {
 };
 
 export default Tablero;
+
+Tablero.propTypes = {
+	clase: PropTypes.string,
+	turnoInicial: PropTypes.bool
+};
