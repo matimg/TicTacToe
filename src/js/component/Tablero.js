@@ -48,10 +48,14 @@ const Tablero = props => {
 	const Estado = () => {
 		const ganador = verificarGanador(celdas);
 		let estado = "";
+		let jugador = ganador;
 		if (ganador) {
+			if (ganador == "X" && props.player1 != "") jugador = props.player1;
+			else if (ganador == "O" && props.player2 != "")
+				jugador = props.player2;
 			return (
 				<Fragment>
-					<h2 className="text-success">{ganador} Wins!</h2>
+					<h2 className="text-success">{jugador} Wins!</h2>
 				</Fragment>
 			);
 		} else {
@@ -63,7 +67,6 @@ const Tablero = props => {
 
 	return (
 		<div className="text-center mt-5" style={{ display: props.clase }}>
-			<h1 className="text-white">Tic Tac Toe in React.js</h1>
 			<Estado />
 			<button onClick={() => limpiar()}>Start Over</button>
 			<div className="container w-25 p-5">
@@ -127,5 +130,7 @@ export default Tablero;
 
 Tablero.propTypes = {
 	clase: PropTypes.string,
-	turnoInicial: PropTypes.bool
+	turnoInicial: PropTypes.bool,
+	player1: PropTypes.string,
+	player2: PropTypes.string
 };
